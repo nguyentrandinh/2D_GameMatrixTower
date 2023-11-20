@@ -41,7 +41,18 @@ public:
                 if (layer2matrixmove[i][j] == 'C')
                 {
                     glColor3f(0, 1, 0);
-                    glRectf(x1.first, x1.second, x2.first, x2.second);
+                    //glRectf(x1.first, x1.second, x2.first, x2.second);
+                    glPointSize(10);
+                    glBegin(GL_POINTS);
+                    
+                    glVertex2f(x1.first + 10, x1.second + 10);
+
+                    glEnd();
+                }
+
+                if(i==waysee.first && j==waysee.second)
+                {
+                    drawRectangle(x1.first, x1.second, x2.first, x2.second);
                 }
                 x1.first += 21;
                 x2.first += 21;
@@ -53,6 +64,7 @@ public:
         }
         stat.display();
         Bar.drawItemBar();
+       
     }
 void Moving(unsigned char key, int x, int y)
 {
@@ -106,6 +118,10 @@ void Moving(unsigned char key, int x, int y)
         Wayeyes('L');
         break;
     }
+    }
+    if (a->matrix[position.first][position.second] == 'E')
+    {
+        exit(0);
     }
    
 }
@@ -183,8 +199,21 @@ void checkWayeyes( int x, int y)
     }
 
 }
+void drawRectangle(float x1, float y1, float x2, float y2)
+{
+    glColor3f(0.5, 0.5, 1);
+    glLineWidth(6);
+    glBegin(GL_LINE_LOOP); // Bắt đầu vẽ đường viền
+    glVertex2f(x1 - 1, y1 + 1);    // Đỉnh trái dưới
+    glVertex2f(x2 + 1, y1 + 1);    // Đỉnh phải dưới
+    glVertex2f(x2 + 1, y2 - 1);    // Đỉnh phải trên
+    glVertex2f(x1 - 1, y2 - 1);    // Đỉnh trái trên
+    glEnd();               // Kết thúc vẽ đường viền
+}
 void Wayeyes(char way)
 {
+    pair<int, int>x1 = make_pair<int, int>(100, 100);
+    pair<int, int>x2 = make_pair<int, int>(120, 120);
     if (way == 'U')
     {
         waysee.first = position.first - 1;
