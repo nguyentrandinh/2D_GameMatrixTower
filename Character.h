@@ -5,8 +5,6 @@
 #include"Map.h"
 #include <typeinfo>
 using namespace std;
-
-
 char Eyes;
 bool isKeyPressed = false;
 class Character
@@ -41,12 +39,9 @@ public:
                 if (layer2matrixmove[i][j] == 'C')
                 {
                     glColor3f(0, 1, 0);
-                    //glRectf(x1.first, x1.second, x2.first, x2.second);
                     glPointSize(10);
                     glBegin(GL_POINTS);
-                    
                     glVertex2f(x1.first + 10, x1.second + 10);
-
                     glEnd();
                 }
 
@@ -79,7 +74,7 @@ void Moving(unsigned char key, int x, int y)
         }
         isKeyPressed = false;
         layer2matrixmove.clear();
-        Wayeyes('U');
+        Wayeyes("U");
         break;
     }
     case 's': {
@@ -91,7 +86,7 @@ void Moving(unsigned char key, int x, int y)
         }
         isKeyPressed = false;
         layer2matrixmove.clear();
-        Wayeyes('D');
+        Wayeyes("D");
         break;
     }
     case 'd': {
@@ -103,7 +98,7 @@ void Moving(unsigned char key, int x, int y)
         }
         isKeyPressed = false;
         layer2matrixmove.clear();
-        Wayeyes('R');
+        Wayeyes("R");
         break;
     }
     case 'a': {
@@ -115,7 +110,7 @@ void Moving(unsigned char key, int x, int y)
         }
         isKeyPressed = false;
         layer2matrixmove.clear();
-        Wayeyes('L');
+        Wayeyes("L");
         break;
     }
     }
@@ -168,7 +163,7 @@ void UseItem(unsigned char key, int x, int y)
         if (Bar.isItemValid(Bar.SelectSlot - 1) == true)
         {
             Bar.item[Bar.SelectSlot - 1]->UseItem(a,waysee,Bar.item);
-            Bar.item[Bar.SelectSlot - 1]->UseItem(a, waysee, stat.health);
+            Bar.item[Bar.SelectSlot - 1]->UseItem(a, waysee, stat);
         }
         break;
     }
@@ -181,21 +176,37 @@ void checkWayeyes( int x, int y)
 
     // Chuyển đổi góc từ radian sang độ
     double angleDegrees = -angleRadians * 180.0 / 3.14;
-    if (angleDegrees >= 45 && angleDegrees <= 135)
+    if (angleDegrees >= 60 && angleDegrees <= 120)
     {
-        Wayeyes('U');
+        Wayeyes("U");
     }
-    else if (angleDegrees > 135 && angleDegrees <= 180 || angleDegrees <-135 && angleDegrees >-180)
+    else if (angleDegrees > 120 && angleDegrees <= 150)
     {
-        Wayeyes('L');
+        Wayeyes("UL");
     }
-    else if (angleDegrees <= -45 && angleDegrees >= -135)
+    else if (angleDegrees > 150 && angleDegrees <= 180 || angleDegrees <=-150 && angleDegrees >=-180)
     {
-        Wayeyes('D');
+        Wayeyes("L");
     }
-    else if (angleDegrees < 45 && angleDegrees >= 0 || angleDegrees <0 && angleDegrees >-45)
+    else if (angleDegrees <=-120 && angleDegrees > -150)
     {
-        Wayeyes('R');
+        Wayeyes("LD");
+    }
+    else if (angleDegrees <= -60 && angleDegrees >-120)
+    {
+        Wayeyes("D");
+    }
+    else if (angleDegrees <= -30 && angleDegrees > -60)
+    {
+        Wayeyes("DR");
+    }
+    else if (angleDegrees < 30 && angleDegrees >= 0 || angleDegrees <0 && angleDegrees >-30)
+    {
+        Wayeyes("R");
+    }
+    else if (angleDegrees <60 && angleDegrees >=30)
+    {
+        Wayeyes("RU");
     }
 
 }
@@ -210,29 +221,49 @@ void drawRectangle(float x1, float y1, float x2, float y2)
     glVertex2f(x1 - 1, y2 - 1);    // Đỉnh trái trên
     glEnd();               // Kết thúc vẽ đường viền
 }
-void Wayeyes(char way)
+void Wayeyes(string way)
 {
     pair<int, int>x1 = make_pair<int, int>(100, 100);
     pair<int, int>x2 = make_pair<int, int>(120, 120);
-    if (way == 'U')
+    if (way == "U")
     {
         waysee.first = position.first - 1;
         waysee.second = position.second;
     }
-    else if (way == 'D')
+    else if (way == "UL")
+    {
+        waysee.first = position.first - 1;
+        waysee.second = position.second - 1;
+    }
+    else if (way == "L")
+    {
+        waysee.first = position.first;
+        waysee.second = position.second - 1;
+    }
+    else if (way == "LD")
+    {
+        waysee.first = position.first + 1;
+        waysee.second = position.second - 1;
+    }
+    else if (way == "D")
     {
         waysee.first = position.first + 1;
         waysee.second = position.second;
     }
-    else if (way == 'L')
+    else if (way == "DR")
     {
-        waysee.first = position.first;
-        waysee.second = position.second-1;
+        waysee.first = position.first + 1;
+        waysee.second = position.second + 1;
     }
-    else if (way == 'R')
+    else if (way == "R")
     {
         waysee.first = position.first;
         waysee.second = position.second+1;
+    }
+    else if (way == "RU")
+    {
+        waysee.first = position.first - 1;
+        waysee.second = position.second + 1;
     }
     else
         return;

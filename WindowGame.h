@@ -7,6 +7,7 @@
 #include"Character.h"
 #include<string>
 #include<math.h>
+#include<thread>
 int mouseX;
 int mouseY;
 #define W 700

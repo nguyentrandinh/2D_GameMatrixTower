@@ -40,7 +40,7 @@ public:
 	Energy(unsigned int a)
 	{
 		Max = a;
-		curEnergy = a;
+		curEnergy = a/2;
 	}
 	void display()
 	{

@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Stat">
+      <UniqueIdentifier>{9948c869-5ac5-4ccc-99e2-09d65286db33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\LayerDisplay">
+      <UniqueIdentifier>{e85d1493-1664-4c40-9832-98f7d1c4bcc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Item">
+      <UniqueIdentifier>{365bae41-cbfb-44fd-9412-79d583b10b28}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -20,38 +29,47 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Map.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Stat.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Energy.h">
+      <Filter>Header Files\Stat</Filter>
     </ClInclude>
     <ClInclude Include="Health.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Energy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ItemBar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Stat</Filter>
     </ClInclude>
     <ClInclude Include="Experience.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Stat</Filter>
+    </ClInclude>
+    <ClInclude Include="Stat.h">
+      <Filter>Header Files\Stat</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Header Files\LayerDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Header Files\LayerDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowGame.h">
+      <Filter>Header Files\LayerDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemBar.h">
+      <Filter>Header Files\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Leveling.h">
+      <Filter>Header Files\Stat</Filter>
     </ClInclude>
     <ClInclude Include="Potion.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="UseItem.h">
+      <Filter>Header Files\Item</Filter>
     </ClInclude>
     <ClInclude Include="Weapon.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files\LayerDisplay</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

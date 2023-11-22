@@ -12,7 +12,7 @@ public:
 	{
 		cout << "Khoi tao class Stat\n";
 		health = new Health(100);
-		energy = new Energy();
+		energy = new Energy(100);
 		Exp = new Experience();
 	}
 	void display()

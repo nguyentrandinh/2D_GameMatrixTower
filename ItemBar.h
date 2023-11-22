@@ -4,6 +4,7 @@
 #include<gl/glut.h>
 #include"Stat.h"
 #include"Item.h"
+#include"UseItem.h"
 #include"Potion.h"
 #include"Weapon.h"
 #include<string>
@@ -30,6 +31,7 @@ public:
 	{
 		cout << "Khoi tao class ItemBar\n";
 		item.push_back(new HealthPoiton("Potion","HealthPotion"));
+		item.push_back(new EnergyPotion("Potion", "EnergyPotion"));
 		item.push_back(new Pickaxe("Weapon","Pickaxe"));
 		item.push_back(new Item("Item","Stone"));
 		
@@ -52,16 +54,32 @@ public:
 	}
 	void CheckTimeItem(int index)
 	{
-		if (item[index]->ammount < 1)
+		if (Weapon* Weaponn = dynamic_cast<Weapon*>(item[index])) {
+			if (Weaponn->dura < 1)
+			{
+				item.erase(item.begin() + index);
+			}
+		}
+		else if (Item* itemmm = dynamic_cast<Item*>(item[index]))
 		{
-			item.erase(item.begin()+index);
+			if (itemmm->ammount < 1)
+			{
+				item.erase(item.begin() + index);
+			}
+		}
+		else if (Potion* itemmm = dynamic_cast<Potion*>(item[index]))
+		{
+			if (itemmm->ammount < 1)
+			{
+				item.erase(item.begin() + index);
+			}
 		}
 		else
 			return;
 	}
 	void drawItemBar()
 	{
-		if (popup == true&&isItemValid(pop))
+		if (popup == true && isItemValid(pop))
 		{
 			pair<int, int> xyz(0, 200);
 			pair<int, int> xyz2(90, 500);
@@ -76,6 +94,12 @@ public:
 			renderBitmapString1(0, 240, GLUT_BITMAP_HELVETICA_10, "Ammount:", 0, 0, 0);
 			string tmp1 = to_string(item[pop]->ammount);
 			renderBitmapString1(60, 240, GLUT_BITMAP_HELVETICA_10, tmp1, 0, 0, 0);
+			if(Weapon* itemmm = dynamic_cast<Weapon*>(item[pop]))
+			{
+				renderBitmapString1(0, 250, GLUT_BITMAP_HELVETICA_10, "Dura:", 0, 0, 0);
+				string tmp3 = to_string(itemmm->dura);
+				renderBitmapString1(60, 250, GLUT_BITMAP_HELVETICA_10, tmp3, 0, 0, 0);
+			}
 		}
 		pair<int, int>x1 = make_pair<int, int>(100, 540);
 		pair<int, int>x2 = make_pair<int, int>(130, 570);

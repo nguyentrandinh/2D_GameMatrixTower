@@ -3,21 +3,22 @@
 class Weapon:public Item
 {
 public:
-	Weapon(string type,string name) :Item(type,name)
+	int dura;
+	Weapon(string type,string name) :Item(type,name),dura(100)
 	{
 
 	}
 };
 class Pickaxe :public Weapon {
 public:
+	
 	Pickaxe(string type,string name) :Weapon(type, name)
 	{
 		cout << "Khoi tao class Pickaxe\n";
-		ammount = 200;
 	}
 	void UseItem(Map*& am, pair<int, int>waysee, vector<Item*>& itemm) override
 	{
-		if (ammount >= 1)
+		if (dura >= 1)
 		{
 			bool check = false;
 			if (am->matrix[waysee.first][waysee.second] == '#'&& waysee.first!=0 && waysee.second!=0 && waysee.first != am->Mapsize.first-1 && waysee.second != am->Mapsize.second - 1)
@@ -36,7 +37,7 @@ public:
 				if (check == false)
 					itemm.push_back(new Item("Item","Stone"));
 			}
-			ammount--;
+			dura--;
 		}
 		return;
 	}
